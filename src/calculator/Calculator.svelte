@@ -14,6 +14,10 @@
             let splitedTextInput = textInput.split('');
             console.log(splitedTextInput[splitedTextInput.length - 1], splitedTextInput)
 
+            if (splitedTextInput[1] === '.' && splitedTextInput[2] === '.') {
+                textInput = 'press AC, please'
+            }
+
             const lookingForAnOperator = (arr) => {
                 for (let i = 0; i < arr.length; i++) {
                     if (isNaN(arr[i]) && arr[i] !== '.') {
@@ -25,16 +29,17 @@
 
             console.log(operator)
             splitedTextInput = textInput.split(operator);
-            console.log(splitedTextInput)
             textInput =
                 splitedTextInput.length === 1 ? splitedTextInput[0]
                     : splitedTextInput.length > 2 || isNaN(splitedTextInput[1]) || isNaN(splitedTextInput[0]) ? 'press AC, please'
-                        : operator === '/' || operator === '*' && !Number(splitedTextInput[1]) ? splitedTextInput[0]
-                            : operator === '/' && splitedTextInput[1] === '0' ? 'press AC, please'
-                                : operator === '/' ? Number(splitedTextInput[0]) / Number(splitedTextInput[1])
-                                    : operator === '*' ? Number(splitedTextInput[0]) * Number(splitedTextInput[1])
-                                        : operator === '+' ? Number(splitedTextInput[0]) + Number(splitedTextInput[1])
-                                            : Number(splitedTextInput[0]) - Number(splitedTextInput[1])
+                        : operator === '/' && splitedTextInput[1] === '0' ? 'press AC, please'
+                            : operator === '*' && !Number(splitedTextInput[1]) ? splitedTextInput[0]
+                                : operator === '/' && !Number(splitedTextInput[1]) ? splitedTextInput[0]
+                                    : operator === '/' ? Number(splitedTextInput[0]) / Number(splitedTextInput[1])
+                                        : operator === '*' ? Number(splitedTextInput[0]) * Number(splitedTextInput[1])
+                                            : operator === '+' ? Number(splitedTextInput[0]) + Number(splitedTextInput[1])
+                                                : Number(splitedTextInput[0]) - Number(splitedTextInput[1])
+            console.log(splitedTextInput)
             console.log(previousAction, splitedTextInput[1])
 
         } else if (e.target.innerText === 'AC') {
