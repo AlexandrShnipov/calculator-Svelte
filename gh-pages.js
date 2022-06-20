@@ -6,12 +6,11 @@ ghpages.publish(
         branch: 'gh-pages',
         repo: 'https://github.com/AlexandrShnipov/calculator-Svelte.git', // Update to point to your repository
         user: {
-            name: 'Alex', // update to use your name
-            email: 'alexandershnipov@gmail.com' // Update to use your email
-        },
-        dotfiles: true
+            name: 'Your name', // update to use your name
+            email: 'Your Email address' // Update to use your email
+        }
     },
     () => {
-        console.log('Deploy Complete!');
+        console.log('Deploy Complete!')
     }
-);
+)
