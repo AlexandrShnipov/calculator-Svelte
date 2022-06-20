@@ -101,6 +101,7 @@
         margin-bottom: .3rem;
         width: 100%;
         font-size: 1.5rem;
+        font-weight: 500;
         border: none;
         box-shadow: 0 0 6px;
         outline: transparent;
@@ -128,12 +129,21 @@
         width: 100%;
         height: 4rem;
         font-size: 2rem;
-        border-radius: 10%;
+        font-weight: 500;
+        border-radius: 15%;
         border: none;
         box-shadow: 0 0 6px;
+        margin: 0;
+        display: grid;
+        place-content: center;
+        color: black;
+    }
+
+    button:hover {
+        background-color: rgba(255, 100, 100, .1);
     }
 
     button:active {
-        background-color: rgba(255, 100, 100, .2);
+        background-color: rgba(255, 100, 100, .4);
     }
 </style>
