@@ -4,7 +4,7 @@ ghpages.publish(
     'public', // path to public directory
     {
         branch: 'gh-pages',
-        repo: 'https://github.com/AlexandrShnipov/calculator-Svelte.git', // Update to point to your repository
+        repo: 'https://alexandrshnipov.github.io/calculator-Svelte', // Update to point to your repository
         user: {
             name: 'Your name', // update to use your name
             email: 'Your Email address' // Update to use your email
