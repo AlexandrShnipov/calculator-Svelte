@@ -1,4 +1,4 @@
-    export const buttons = [{
+    export let buttons = [{
         id: 1, text: 1
     }, {
         id: 2, text: 2
@@ -34,5 +34,4 @@
         id: 19, text: 'AC'
     }]
 
-    //console.log(typeof textInput);
 

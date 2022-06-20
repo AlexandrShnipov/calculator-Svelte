@@ -1,46 +1,68 @@
 <script>
-    import {buttons,} from './Lets.js';
+    import {buttons} from './Lets.js';
 
     let textInput = '';
     let previousAction = '';
-    let operator;
+    let operator = [];
+    let dots = 0;
+    let splitedTextInput = [];
 
     const inputContentAfterInput = (e) => {
         if ((e.target.innerText === '=')) {
 
             previousAction = textInput
-
             console.log(textInput)
-            let splitedTextInput = textInput.split('');
-            console.log(splitedTextInput[splitedTextInput.length - 1], splitedTextInput)
 
-            if (splitedTextInput[1] === '.' && splitedTextInput[2] === '.') {
-                textInput = 'press AC, please'
+            const lookingDots = (arr) => {
+                splitedTextInput = textInput.split('');
+                if (arr[1] === '.' && arr[2] === '.') {
+                    textInput = 'press AC, please'
+                }
+                for (let i = 0; i < arr.length; i++) {
+                    if (arr[i] === '.') {
+                        dots += 1
+                        if (dots > 2) {
+                            textInput = 'press AC, please'
+                        }
+                    }
+                }
             }
 
             const lookingForAnOperator = (arr) => {
                 for (let i = 0; i < arr.length; i++) {
                     if (isNaN(arr[i]) && arr[i] !== '.') {
-                        operator = arr[i];
+                        operator = [...operator, arr[i]];
+                        if (operator.length > 1) {
+                            textInput = 'press AC, please'
+                        } else {
+                            operator = operator[0];
+                        }
                     }
                 }
             }
-            lookingForAnOperator(splitedTextInput)
 
+            lookingDots(splitedTextInput)
+            lookingForAnOperator(splitedTextInput)
             console.log(operator)
+
             splitedTextInput = textInput.split(operator);
-            textInput =
-                splitedTextInput.length === 1 ? splitedTextInput[0]
-                    : splitedTextInput.length > 2 || isNaN(splitedTextInput[1]) || isNaN(splitedTextInput[0]) ? 'press AC, please'
-                        : operator === '/' && splitedTextInput[1] === '0' ? 'press AC, please'
-                            : operator === '*' && !Number(splitedTextInput[1]) ? splitedTextInput[0]
-                                : operator === '/' && !Number(splitedTextInput[1]) ? splitedTextInput[0]
-                                    : operator === '/' ? Number(splitedTextInput[0]) / Number(splitedTextInput[1])
-                                        : operator === '*' ? Number(splitedTextInput[0]) * Number(splitedTextInput[1])
-                                            : operator === '+' ? Number(splitedTextInput[0]) + Number(splitedTextInput[1])
-                                                : Number(splitedTextInput[0]) - Number(splitedTextInput[1])
             console.log(splitedTextInput)
-            console.log(previousAction, splitedTextInput[1])
+
+            textInput =
+                isNaN(splitedTextInput[0]) || isNaN(splitedTextInput[1]) ? 'press AC, please'
+                    : splitedTextInput.length === 1 ? splitedTextInput[0]
+                        : splitedTextInput.length > 2 ? 'press AC, please'
+                            : operator === '/' && splitedTextInput[1] === '0' ? 'press AC, please'
+                                : operator === '*' && !Number(splitedTextInput[1]) ? splitedTextInput[0]
+                                    : operator === '/' && !Number(splitedTextInput[1]) ? splitedTextInput[0]
+                                        : operator === '/' ? Number(splitedTextInput[0]) / Number(splitedTextInput[1])
+                                            : operator === '*' ? Number(splitedTextInput[0]) * Number(splitedTextInput[1])
+                                                : operator === '+' ? Number(splitedTextInput[0]) + Number(splitedTextInput[1])
+                                                    : operator === '-' ? Number(splitedTextInput[0]) - Number(splitedTextInput[1])
+                                                        : 'press AC, please'
+
+            console.log(previousAction, isNaN(splitedTextInput[1]))
+            operator = ''
 
         } else if (e.target.innerText === 'AC') {
             textInput = '';
@@ -48,19 +70,12 @@
         } else {
             textInput = String(textInput) + String(e.target.innerText)
             console.log(typeof textInput, textInput, e)
-            if (isNaN(textInput.split('')[0])) {
+            if((textInput.split('')[0] === '0' && textInput.split('')[1] === '0') || (isNaN(textInput.split('')[0]))){
+                console.log(textInput.split('')[0])
                 textInput = 'press AC, please'
             }
         }
-        // setTimeout(resetText, 5000);
     }
-
-    // const resetText = () => {
-    //     if (result.length !== 0) {
-    //         textInput = '';
-    //     }
-    // }
-
 
 </script>
 
